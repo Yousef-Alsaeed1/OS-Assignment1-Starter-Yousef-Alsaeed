@@ -29,6 +29,7 @@ class Process implements Runnable {
     private int burstTime; // Total time the process requires to complete (in milliseconds)
     private int timeQuantum; // Time slice (time quantum) allowed per CPU access (in milliseconds)
     private int remainingTime; // Time left for the process to finish its execution
+    private int priority; // priority number 1-5 where 5 is higher
 
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum) {
@@ -36,6 +37,7 @@ class Process implements Runnable {
         this.burstTime = burstTime;
         this.timeQuantum = timeQuantum;
         this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
+        this.priority = new Random().nextInt(5) + 1; // adding a random priority between 0 - 4 and then adding 1 so it is 1-5
     }
 
     // This method will be called when the thread for this process is started
@@ -128,6 +130,7 @@ class Process implements Runnable {
     public String getName() {
         return name;
     }
+    
 
     public int getBurstTime() {
         return burstTime;
@@ -136,6 +139,11 @@ class Process implements Runnable {
     public int getRemainingTime() {
         return remainingTime;
     }
+
+     public int getpriority() {
+        return priority;
+    }
+
 
     // Check if the process has finished (i.e., no remaining time)
     public boolean isFinished() {
@@ -257,7 +265,7 @@ public class SchedulerSimulation {
                     addProcessToQueue(process, processQueue, processMap);
                 } else {
                     // If this is the last process in the queue, run it to completion
-                    System.out.println(Colors.BRIGHT_YELLOW + "  ⚠ " + Colors.CYAN + process.getName() + 
+                    System.out.println(Colors.BRIGHT_YELLOW + "  ⚠ " + Colors.CYAN + process.getName() + "(Priority: " + process.getpriority() + ")"  +
                                       Colors.RESET + Colors.YELLOW + " is the last process → running to completion" + 
                                       Colors.RESET);
                     process.runToCompletion(); // Run until the process completes
@@ -291,7 +299,7 @@ public class SchedulerSimulation {
         processMap.put(thread, process);
         
         // Print a message indicating the process has entered the ready queue
-        System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + 
+        System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + "  " +
                           Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET + 
                           " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
                           Colors.RESET);
