@@ -187,7 +187,7 @@ public class SchedulerSimulation {
                           "╠═══════════════════════════════════════════════════════════════════════════════════════╣" + 
                           Colors.RESET);
         System.out.println(Colors.BOLD + Colors.BRIGHT_CYAN + "║" + Colors.RESET + 
-                          Colors.YELLOW + "  ⚙ Processes:     " + Colors.RESET + Colors.BRIGHT_YELLOW + 
+                          Colors.YELLOW + "  ⚙ Processes:     " + Colors.RESET + Colors.BRIGHT_YELLOW +
                           String.format("%-65s", numProcesses) + 
                           Colors.BOLD + Colors.BRIGHT_CYAN + "║" + Colors.RESET);
         System.out.println(Colors.BOLD + Colors.BRIGHT_CYAN + "║" + Colors.RESET + 
@@ -269,7 +269,7 @@ public class SchedulerSimulation {
                     addProcessToQueue(process, processQueue, processMap);
                 } else {
                     // If this is the last process in the queue, run it to completion
-                    System.out.println(Colors.BRIGHT_YELLOW + "  ⚠ " + Colors.CYAN + process.getName() + "(Priority: " + process.getpriority() + ")"  +
+                    System.out.println(Colors.BRIGHT_YELLOW + "  ⚠ " + Colors.CYAN + process.getName() +
                                       Colors.RESET + Colors.YELLOW + " is the last process → running to completion" + 
                                       Colors.RESET);
                     process.runToCompletion(); // Run until the process completes
@@ -306,9 +306,9 @@ public class SchedulerSimulation {
         processMap.put(thread, process);
         
         // Print a message indicating the process has entered the ready queue
-        System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + "  " +
-                          Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET + 
+        System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + "(Priority: " + process.getpriority() + ")" // printing the process priority number
+                         + Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET + 
                           " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
-                          Colors.RESET); // don't forget to write here aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                          Colors.RESET); 
     } 
 }
