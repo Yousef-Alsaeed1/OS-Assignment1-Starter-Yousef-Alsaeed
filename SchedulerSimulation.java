@@ -166,6 +166,9 @@ public class SchedulerSimulation {
         // Generate random number of processes between 10 and 20
         int numProcesses = 10 + random.nextInt(11); // Random number between 10 and 20
         
+        // setting a variable to store how many time context switch happend
+        int contextSwitches = 0;
+
         // Queue to manage processes in a First-In-First-Out (FIFO) order
         Queue<Thread> processQueue = new LinkedList<>();
         
@@ -246,7 +249,8 @@ public class SchedulerSimulation {
             
             // Start the thread, which will run the process for one time quantum
             currentThread.start();
-            
+            contextSwitches++;
+
             try {
                 // Wait for the thread to finish its time quantum before continuing to the next process
                 currentThread.join();
@@ -274,6 +278,9 @@ public class SchedulerSimulation {
         }
         
         // End of the scheduler simulation
+        System.out.println("total context switches: " + contextSwitches ); //adding total of contextSwitches in the end
+
+
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN + 
                           "╔════════════════════════════════════════════════════════════════════════════════╗" + 
                           Colors.RESET);
@@ -302,6 +309,6 @@ public class SchedulerSimulation {
         System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + "  " +
                           Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET + 
                           " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
-                          Colors.RESET);
-    }
+                          Colors.RESET); // don't forget to write here aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    } 
 }
