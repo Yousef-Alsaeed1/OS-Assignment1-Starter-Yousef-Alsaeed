@@ -32,90 +32,103 @@ Document your development process as you work on the assignment. Add entries sho
 
 ## Your Development Log:
 
-### Entry 1 - [Date and Time]
-**What I did**: 
+### Entry 1 - [March 27]
+**What I did**: setting up GitHub account and fork the repository
 
 **Details**: 
+- Created GitHub account using university email
+- Forked the starter repository from the professor's account
+- Renamed the repository to my name
+- Made sure the repository is public
+- Set my student ID in SchedulerSimulation.java
 
-**Challenges**: 
 
-**Solution**: 
+**Challenges**: no major challenges
 
-**Time spent**: 
+**Solution**: Followed the README instructions step by step
+
+**Time spent**: 30 minutes
 
 ---
 
-### Entry 2 - [Date and Time]
-**What I did**: 
+### Entry 2 - [March 27]
+**What I did**: Set up VS code and cloned the repository
 
 **Details**: 
+- Downloaded and installed VS Code
+- Installed Java Extension Pack
+- Cloned my repository to my computer
+- Tried to run the code but got a Java version error
 
-**Challenges**: 
+**Challenges**: java version was outdated code needed a newer version
 
-**Solution**: 
+**Solution**: Downloaded and installed Java 25 
 
-**Time spent**: 
+**Time spent**: 30 minutes
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**: 
+### Entry 3 - [March 28]
+**What I did**: Implemented feature 1 / Process Priority
 
 **Details**: 
+**Details**: 
+- Added priority variable to process class
+- Added getPriority() getter method
+- Modified addProcessToQueue to display priority
+- Committed with message "Added priority"
 
-**Challenges**: 
 
-**Solution**: 
+**Challenges**: got red underline because priority was private
 
-**Time spent**: 
+**Solution**: created a getter method getPriority() to access it properly
+
+**Time spent**: 1:30 hour
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**: 
+### Entry 4 - [March 29]
+**What I did**: Implemented Feature 2 / Context Switch Counter
 
 **Details**: 
+- Added contextSwitches variable initialized to 0
+- Incremented it every time thread.start() is called
+- Printed total context switches at end of simulation
+- Committed with message "implemented context switch counter"
 
-**Challenges**: 
+**Challenges**: there was a problem with the output found that i accidentally set contextSwitches to 9 instead of 0
 
-**Solution**: 
+**Solution**: Fixed it to start at 0
 
-**Time spent**: 
+**Time spent**: 1h
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**: 
+### Entry 5 - [March 29]
+**What I did**: Implemented Feature 3 / Waiting Time Tracking
 
 **Details**: 
+- Added createdTime and waitingTime fields to Process class
+- Added getter and setter methods
+- Calculated waiting time each time a process starts running
+- Printed summary table at end showing all processes
+- Committed with message "Feature 3: Added waiting time tracking and summary table"
 
-**Challenges**: 
+**Challenges**: waiting times were showing large numbers like 3549593006209ms
 
-**Solution**: 
+**Solution**: i found out that getcreatedTime() was returning priority instead of createdTime fixed the return value
 
-**Time spent**: 
-
----
-
-### Entry 6 - [Optional - Date and Time]
-**What I did**: 
-
-**Details**: 
-
-**Challenges**: 
-
-**Solution**: 
-
-**Time spent**: 
+**Time spent**: 1.5 hours
 
 ---
 
 ## Summary
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: [Around 5 hours]
 
-**Most challenging part**: 
+**Most challenging part**:  feature 3 (waitingtime) because it required understanding how to track time using System.currentTimeMillis() and there was some new methods that i had to learn
 
-**Most interesting learning**: 
+**Most interesting learning**: learning how threads work and how the cpu switches between processes  and implmenting some of it myself was very helpful
 
-**What I would do differently next time**: 
+**What I would do differently next time**: start earlier and test each feature more carefully before moving to the next one
+
