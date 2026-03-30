@@ -148,24 +148,24 @@ class Process implements Runnable {
         return remainingTime;
     }
 
-     public int getpriority() {// hereee
+     public int getpriority() {
         return priority;
     }
 
-    public long getcreatedTime() {// hereee
+    public long getcreatedTime() {
         return createdTime;
     }
 
-    public long getwaitingTime() {// hereee
+    public long getwaitingTime() {
         return waitingTime;
     }
 
 
-    public void setcreatedTime(long time){// hereee
+    public void setcreatedTime(long time){
         this.createdTime = time;
     }
 
-    public void addWaitingTime(long time){// hereee
+    public void addWaitingTime(long time){
         this.waitingTime += time;
 
         }
