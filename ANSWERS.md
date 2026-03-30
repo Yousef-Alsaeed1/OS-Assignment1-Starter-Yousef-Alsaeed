@@ -11,7 +11,13 @@ Answer all 4 questions with detailed explanations. Each answer should be **3-5 s
 
 **Your Answer:**
 
-[Write your answer here. Consider: What is a process? What is a thread? How do they differ in terms of memory, resources, creation overhead? Why are threads more suitable for this simulation?]
+[
+ A process is a complete independent program running on the computer with its own memory space 
+ a thread is a smaller unit that runs inside a process and shares the same memory with other threads in the same process
+ the main differences are that threads are much cheaper to create than processes, threads share memory so they can communicate faster and switching between threads is faster than switching between processes
+ In this assignment we used threads instead of separate processes because all our processes share the same simulation data like the queue and the map 
+ using threads made it easier and faster to simulate multiple processes competing for CPU time.
+]
 
 ---
 
@@ -21,15 +27,34 @@ Answer all 4 questions with detailed explanations. Each answer should be **3-5 s
 
 **Your Answer:**
 
-[Write your answer here. Describe the specific behavior - where does the process go? When does it run again? Give an example from your actual program output showing a process that was re-queued.]
+[
+    In Round-Robin scheduling when a process does not finish within its time quantum
+    it is removed from the CPU and placed back at the end of the ready queue It then waits for all other processes in the queue to get their turn before it runs again
+    This ensures fairness because no single process can monopolize the CPU
+]
+
 
 Example from my output:
-```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
-```
+
+
+
+[  ? P2 executing quantum [3000ms]
+  ? Quantum progress: [███████████████] 100%
+  ? P2 completed quantum 3000ms │ Overall progress: [█████████████░░░░░░░] 68%
+     Remaining time: 1394ms
+  ? P2 yields CPU for context switch
+
+  ? P2(Priority: 1) added to ready queue │ Burst time: 4394ms
+┌─ Ready Queue ─────────────────────────────────────────────────────────────────
+│ [P4 ? P5 ? P6 ? P7 ? P8 ? P9 ? P10 ? P11 ? P12 ? P13 ? P14 ? P2]
+└───────────────────────────────────────────────────────────────────────────────
+]
+
 
 **Explanation of example:**
-[Explain what's happening in the output snippet you pasted]
+[p2 ran for 3000ms but still had 1394ms remaining and instead of continuing it yielded the cpu and was added back to the end of the queue
+ this allowed other processes like p3 and p4 to run before P2 got its next turn. This behavior is important because it gives every process a fair chance to use the cpu.
+]
 
 ---
 
@@ -39,17 +64,16 @@ Example from my output:
 
 **Your Answer:**
 
-[Write your answer here. For each state, explain when P1 enters that state during the simulation. Use your understanding of the code to trace through the lifecycle.]
 
-1. **New**: [When is P1 in New state?]
+1. **New**: [p1 is in the New state when we create it with new Process("P1", burstTime, timeQuantum) and new Thread(process) but before we call start()]
 
-2. **Runnable**: [When does P1 become Runnable?]
+2. **Runnable**: [p1 becomes runnable when we call currentThread.start()  it is ready to run but waiting for the CPU to actually execute it]
 
-3. **Running**: [When is P1 Running?]
+3. **Running**: [p1 is Running when the cpu actually executes its run() method]
 
-4. **Waiting**: [When/why would P1 be Waiting?]
+4. **Waiting**: [p1 enters the Waiting state when Thread.sleep() is called inside the run method  it pauses and waits for the sleep time to finish usaly becuse it is waiting for i/o]
 
-5. **Terminated**: [When is P1 Terminated?]
+5. **Terminated**: [p1 is Terminated when its run() method finishes completely  this happens when remainingTime reaches 0]
 
 ---
 
@@ -59,31 +83,35 @@ Example from my output:
 
 **Your Answer:**
 
-### Example 1: [Name of application/scenario]
+### Example 1: [ Video Game Engine]
 
 **Description**: 
-[Describe the real-world scenario or application]
+[a video game needs to handle many tasks at the same time such as rendering graphics, playing sounds, detecting player input, and updating game physics
+each task runs in its own thread]
 
 **Why Round-Robin works well here**: 
-[Explain why Round-Robin scheduling is suitable. Consider fairness, responsiveness, predictability, etc.]
+[Round Robin works well here because all these tasks need regular cpu time to keep the game running smoothly if one task like graphics took all the CPU time the game would freeze and not respond to player input
+Round Robin ensures each task gets regular turns so the game feels smooth and responsive.]
 
-### Example 2: [Name of application/scenario]
+### Example 2: [Web Server]
 
 **Description**: 
-[Describe the real-world scenario or application]
+[ a web server receives requests from many users at the same time
+  Each user request is handled by a separate thread for example when 100 users visit a website at the same time, the server creates 100 threads to handle them.]
 
 **Why Round-Robin works well here**: 
-[Explain why Round-Robin scheduling is suitable. Consider fairness, responsiveness, predictability, etc.]
+[Round Robin is suitable because it gives every user request a fair chance to be processed no single user request will block others from being handled This makes the server responsive to all users instead of making some users wait a very long time while others finish quickly.]
 
 ---
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1. 
-2. 
-3. 
+1. threads share memory while processes do not
+2. Round Robin gives every process a fair turn using time quantum
+3. Threads go through different states from new to terminated during execution
+
 
 **Concepts I need to study more:**
-1. 
-2. 
+1. thread synchronization and avoiding conflicts between threads
+2. Other scheduling algorithms like Priority Scheduling and Shortest Job First
