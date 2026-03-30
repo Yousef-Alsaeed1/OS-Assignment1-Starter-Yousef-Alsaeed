@@ -19,7 +19,7 @@ Document your development process as you work on the assignment. Add entries sho
 **Details**: 
 - Created GitHub account with university email
 - Forked the starter repository
-- Changed student ID on line 92 to my actual ID (441234567)
+- Changed student ID on line 92 to my actual ID (445050012)
 - Compiled and ran the program successfully
 
 **Challenges**: Had to install JDK first because javac wasn't recognized
